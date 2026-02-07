@@ -1,0 +1,81 @@
+class Employee {
+    private String name;
+    private double baseSalary;
+    
+    public Employee(String name, double baseSalary) {
+        this.name = name;
+        this.baseSalary = baseSalary;
+    }
+    
+    public String getName() { return name; }
+    public double getBaseSalary() { return baseSalary; }
+    
+    public double calculateSalary() {
+        return baseSalary;
+    }
+}
+
+interface SalaryCalculator {
+    double calculateSalary(Employee employee);
+}
+
+class PermanentEmployee extends Employee implements SalaryCalculator {
+    public PermanentEmployee(String name, double baseSalary) {
+        super(name, baseSalary);
+    }
+    
+    @Override
+    public double calculateSalary() {
+        return getBaseSalary() * 1.2;
+    }
+}
+
+class ContractEmployee extends Employee implements SalaryCalculator {
+    public ContractEmployee(String name, double baseSalary) {
+        super(name, baseSalary);
+    }
+    
+    @Override
+    public double calculateSalary() {
+        return getBaseSalary() * 1.1;
+    }
+}
+
+class InternEmployee extends Employee implements SalaryCalculator {
+    public InternEmployee(String name, double baseSalary) {
+        super(name, baseSalary);
+    }
+    
+    @Override
+    public double calculateSalary() {
+        return getBaseSalary() * 0.8;
+    }
+}
+
+class FreelancerEmployee extends Employee implements SalaryCalculator {
+    private int hoursWorked;
+    private double hourlyRate;
+    
+    public FreelancerEmployee(String name, int hoursWorked, double hourlyRate) {
+        super(name, 0);
+        this.hoursWorked = hoursWorked;
+        this.hourlyRate = hourlyRate;
+    }
+    
+    @Override
+    public double calculateSalary() {
+        return hoursWorked * hourlyRate;
+    }
+}
+
+class EmployeeSalaryCalculator {
+    public double calculateTotalSalary(List<Employee> employees) {
+        double total = 0;
+        for (Employee employee : employees) {
+            if (employee instanceof SalaryCalculator) {
+                total += employee.calculateSalary();
+            }
+        }
+        return total;
+    }
+}
