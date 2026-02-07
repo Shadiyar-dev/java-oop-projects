@@ -1,0 +1,40 @@
+// Класс Order отвечает только за хранение данных о заказе
+class Order {
+    private String productName;
+    private int quantity;
+    private double price;
+    
+    public Order(String productName, int quantity, double price) {
+        this.productName = productName;
+        this.quantity = quantity;
+        this.price = price;
+    }
+    
+    public String getProductName() { return productName; }
+    public int getQuantity() { return quantity; }
+    public double getPrice() { return price; }
+}
+
+// Класс для расчета стоимости заказа
+class OrderCalculator {
+    public double calculateTotalPrice(Order order) {
+        // Расчет стоимости с учетом скидок
+        return order.getQuantity() * order.getPrice() * 0.9;
+    }
+}
+
+// Класс для обработки платежей
+class PaymentProcessor {
+    public void processPayment(String paymentDetails) {
+        // Логика обработки платежа
+        System.out.println("Payment processed using: " + paymentDetails);
+    }
+}
+
+// Класс для отправки уведомлений
+class NotificationService {
+    public void sendConfirmationEmail(String email) {
+        // Логика отправки уведомления
+        System.out.println("Confirmation email sent to: " + email);
+    }
+}
