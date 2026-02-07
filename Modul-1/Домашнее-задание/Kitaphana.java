@@ -1,4 +1,3 @@
-// Файл: Kitaphana.java
 import java.util.*;
 
 class Book {
@@ -278,4 +277,5 @@ public class Kitaphana {
         kitaphana.displayBooks();
         kitaphana.displayReaders();
     }
+
 }
